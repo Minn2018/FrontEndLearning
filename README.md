@@ -1,3 +1,3 @@
 # FrontEndLearning
 
-This is the first time I've enterd GitHub.
+This is the first time I've entered GitHub.
