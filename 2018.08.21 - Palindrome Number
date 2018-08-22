@@ -1,0 +1,27 @@
+/* 2018.08.21
+ * Problem: 9. Palindrome Number
+ * State: solved
+ */
+
+/*==============================================================
+Problem:
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.*/
+/*==============================================================*/
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+    if(x>=0){
+        x=x+""; 
+        for(var i=0;i<x.length/2;i++){
+            if(x.charAt(i)-x.charAt(x.length-1-i)!=0)
+            return false;
+        }
+        return true;
+    } 
+    else 
+        return false; 
+    
+};
