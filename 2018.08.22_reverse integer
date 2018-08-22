@@ -1,0 +1,56 @@
+/*2018.08.22*/
+/*Problem: 7. Reverse Integer
+ *state: solved*/
+ 
+ /*==================================================================
+ Problem:
+ Given a 32-bit signed integer, reverse digits of an integer.
+ Assume we are dealing with an environment which could only store integers within 
+ the 32-bit signed integer range: [−231,  231 − 1]. 
+ For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+*====================================================================*/
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+ var reverse = function(x) {
+     x = x+"";
+     var nums = new Array; 
+     //convert a string to an array nums[]
+     for (var i = 0;i<x.length;i++){        
+        nums.push(x.charAt(i));         
+     }
+     nums = nums.reverse();
+     if(nums[nums.length-1] == '-'){
+        //move the '-' to the head of the array
+         var sign = nums.pop();        
+         nums.unshift(sign);
+         //remove the extra '0'
+         while(nums[1]==0){
+             nums.splice(1,1);
+         }      
+     }
+     
+     //remove the extra '0'
+     while(nums.length != 1 && nums[0] == 0){
+        nums.splice(0,1);
+     }
+     //covert an array to a number
+     var num_str = nums.toString();
+     var newStr = "";
+     for (var k=0;k<num_str.length;k++){
+         if(num_str[k]!=','){
+             newStr = newStr + num_str[k];
+         }
+     }
+     var num_int = parseInt(newStr);
+     
+     //limit the range
+     if(num_int > Math.pow(2, 31)-1 || num_int <  -Math.pow(2, 31) ){
+         return 0;
+     }   
+     return num_int;
+     
+   
+}
