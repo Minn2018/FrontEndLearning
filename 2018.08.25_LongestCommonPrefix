@@ -1,0 +1,28 @@
+/*2018.08.25
+*Problem: 14. Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+*status: passed with the help of "Solution"
+*/
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    if(strs.length == 0) return "";
+    var prefix = strs[0];   //先让数组第一个元素作为最长前缀，以便比较
+    for(var i = 0; i < strs.length;i++){
+        //用indexOf()在数组中的其他string中查找子串，如果查到的子串不是从位置 0开始的
+        //就将prefix的长度减一，再次匹配该string，直到在该string中找到子串prefix
+        //并且prefix的位于string的第一位，然后才进行数组下一个元素的匹配
+        //如果最终匹配失败返回空string。
+        while(strs[i].indexOf(prefix)!=0){
+            prefix = prefix.substring(0,prefix.length-1);
+            if(prefix == "") return "";
+        }
+    }
+    return prefix;
+};
