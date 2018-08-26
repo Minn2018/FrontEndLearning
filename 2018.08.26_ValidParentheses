@@ -1,0 +1,40 @@
+/*2018.08.26
+*Problem: 20. Valid Parentheses
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
+
+*status:passed
+*/
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    //如果输入的括号数量为奇数，直接return false
+    if(s.length % 2 != 0) return false;
+    //新建一个数组模拟堆栈，存放括号
+    var sArray = new Array();
+    for(var i = 0;i<s.length;i++){
+        //放入一个括号，如果数组内括号数不足2个则再放入一个括号
+        sArray.push(s[i]);
+        //alert(sArray);
+        if(sArray.length<2) continue;
+        //检查数组最后放进去的两个括号，如果相匹配则弹出堆栈
+        if(sArray[sArray.length-2]=="(" && sArray[sArray.length-1]==")"
+         ||sArray[sArray.length-2]=="[" && sArray[sArray.length-1]=="]"
+         ||sArray[sArray.length-2]=="{" && sArray[sArray.length-1]=="}"){
+            sArray.pop();
+            sArray.pop();
+        }
+        //alert(sArray);
+    }
+    //放完全部括号后，最终堆栈内为空则表示所有括号都得到了匹配
+    if(sArray.length == 0) return true;
+    else return false;
+    };
