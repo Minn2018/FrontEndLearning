@@ -1,0 +1,54 @@
+//=============================================================
+/*2018.08.27
+*Problem:21. Merge Two Sorted Lists
+Merge two sorted linked lists and return it as a new list.
+The new list should be made by splicing together the nodes of the first two lists.
+Example:
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+*status: Accepted*/
+//=============================================================
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+       //next1和next2像是两个不断向后移动的指针（实际是对象）
+        var next1 = l1;
+        var next2 = l2;
+       //now是合并后的链表当前插入的位置  
+        var now = new ListNode(0);
+       //head是合并后的链表的头指针
+        var head = now;
+        //比较next1和next2的值的大小，将小的那个接在now后面，now后移一位，对应链表指针也后移一位。
+        while(next1 != null && next2 != null){
+            if(next1.val > next2.val){
+                now.next = next2;
+                now = now.next;
+                next2 = next2.next;
+            }else{
+                now.next = next1;
+                now = now.next;
+                next1 = next1.next;
+            }
+        }
+        //两条链表不断插入新链表，总有一个先为空，一个为空之后，另条链就直接接到新链表尾
+        if(next1 == null && next2 != null){
+            now.next = next2;
+        }
+        
+        if(next2 == null && next1 != null){
+            now.next = next1;
+        }
+        //返回新链表除头指针外的第一个对象
+        return head.next;
+};
