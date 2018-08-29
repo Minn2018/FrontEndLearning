@@ -24,11 +24,13 @@
  * @param {function} isBadVersion()
  * @return {function}
  */
+ //函数可以作为参数传递，相当于一个函数指针，所以传入的是函数名不带括号
 var solution = function(isBadVersion) {
     /**
      * @param {integer} n Total versions
      * @return {integer} The first bad version
      */
+     //返回一个函数，带括号的那种，实际上返回的是函数执行操作后的结果
     return function(n) {
         for(var i = 1;i < n; i++){
             if(isBadVersion(i)==false && isBadVersion(i+1)==true) {
